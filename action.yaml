@@ -5,22 +5,22 @@ inputs:
     description: 'PHP image to use'
     required: true
   run-phpcs:
-    description: 'Run PHPCS'
+    description: 'Run PHP Checkstyle'
     required: true
     default: 'true'
   run-phpmd:
-    description: 'Run PHPMD'
+    description: 'Run PHP MD'
     required: true
     default: 'true'
   run-phpcpd:
-    description: 'Run PHPCPD'
+    description: 'Run PHP CPD'
     required: true
     default: 'true'
   run-phpstan:
-    description: 'Run PHPStan'
+    description: 'Run PHP Stan'
     required: true
     default: 'true'
-  reports-path:
+  reports-dir:
     description: 'Path to store reports'
     required: true
     default: 'build/reports'
@@ -32,32 +32,32 @@ runs:
       uses: adore-me/gha-php-checkstyle@v1.0.0
       with:
         php-image: ${{ inputs.php-image }}
-        reports-path: ${{ inputs.reports-path }}
+        report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
       uses: adore-me/gha-php-md@v1.0.0
       with:
         php-image: ${{ inputs.php-image }}
-        reports-path: ${{ inputs.reports-path }}Ω
+        report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Run PHP CPD'
       if: ${{ inputs.run-phpcpd == 'true' }}
       uses: adore-me/gha-php-cpd@v1.0.0
       with:
         php-image: ${{ inputs.php-image }}
-        reports-path: ${{ inputs.reports-path }}
+        report-dir: ${{ inputs.reports-dir }}
 
-    - name: 'Run PHP STAN'
+    - name: 'Run PHP Stan'
       if: ${{ inputs.run-phpstan == 'true' }}
       uses: adore-me/gha-php-stan@v1.0.0
       with:
         php-image: ${{ inputs.php-image }}
-        reports-path: ${{ inputs.reports-path }}
+        report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Save Static Checks artifacts'
       if: always()
       uses: actions/upload-artifact@master
       with:
         name: static-checks-artifacts
-        path: ${{ inputs.reports-path }}
+        path: ${{ inputs.reports-dir }}

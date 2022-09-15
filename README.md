@@ -4,14 +4,14 @@
 Run PHP static checks, annotate build and artifact results.
 
 ## Inputs
-| Key              | Required | Default | Description                                                                                            |
-|------------------|----------|---------|--------------------------------------------------------------------------------------------------------|
-| **php-image**    | **true** | `N/A`   | PHP image to use (fully qualified image address).<br/>**Ex**: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
-| **run-phpcs**    | **true** | `true`  | Enable/disable PHP Checkstyle.                                                                         |
-| **run-phpmd**    | **true** | `true`  | Enable/disable PHP Mess Detector.                                                                      |
-| **run-phpcpd**   | **true** | `true`  | Enable/disable PHP Copy/Paste Detector.                                                                |
-| **run-phpstan**  | **true** | `true`  | Enable/disable PHP STAN.                                                                               |
-| **reports-path** | **true** | `true`  | Path to save reports.                                                                                  |
+| Key             | Required | Default         | Description                                                                                            |
+|-----------------|----------|-----------------|--------------------------------------------------------------------------------------------------------|
+| **php-image**   | **true** | `N/A`           | PHP image to use (fully qualified image address).<br/>**Ex**: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
+| **run-phpcs**   | **true** | `true`          | Enable/disable PHP Checkstyle.                                                                         |
+| **run-phpmd**   | **true** | `true`          | Enable/disable PHP Mess Detector.                                                                      |
+| **run-phpcpd**  | **true** | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
+| **run-phpstan** | **true** | `true`          | Enable/disable PHP STAN.                                                                               |
+| **reports-dir** | **true** | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
 
 ## Outputs
 **N/A**
@@ -35,7 +35,7 @@ steps:
       run-phpmd: 'true'
       run-phpcpd: 'false'
       run-phpstan: 'true'
-      reports-path: 'build/reports'
+      reports-dir: 'build/reports'
 ```
 
 You can skip the `with` section if you are ok with the default values.
