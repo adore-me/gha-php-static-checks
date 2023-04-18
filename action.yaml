@@ -36,7 +36,7 @@ runs:
 
     - name: 'Run PHP Checkstyle'
       if: ${{ inputs.run-phpcs == 'true' }}
-      uses: adore-me/gha-php-checkstyle@v2.0.2
+      uses: adore-me/gha-php-checkstyle@v2.0.4
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
