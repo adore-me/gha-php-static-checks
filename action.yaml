@@ -50,7 +50,7 @@ runs:
 
     - name: 'Run PHP CPD'
       if: ${{ inputs.run-phpcpd == 'true' }}
-      uses: adore-me/gha-php-cpd@v2.0.0
+      uses: adore-me/gha-php-cpd@v2.0.2
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
