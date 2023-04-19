@@ -57,7 +57,7 @@ runs:
 
     - name: 'Run PHP Stan'
       if: ${{ inputs.run-phpstan == 'true' }}
-      uses: adore-me/gha-php-stan@v2.0.0
+      uses: adore-me/gha-php-stan@v2.0.2
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
