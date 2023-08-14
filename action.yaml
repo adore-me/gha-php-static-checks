@@ -36,28 +36,28 @@ runs:
 
     - name: 'Run PHP Checkstyle'
       if: ${{ inputs.run-phpcs == 'true' }}
-      uses: adore-me/gha-php-checkstyle@v2.0.4
+      uses: adore-me/gha-php-checkstyle@v2.1.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
-      uses: adore-me/gha-php-md@v2.0.2
+      uses: adore-me/gha-php-md@v2.1.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Run PHP CPD'
       if: ${{ inputs.run-phpcpd == 'true' }}
-      uses: adore-me/gha-php-cpd@v2.0.2
+      uses: adore-me/gha-php-cpd@v2.1.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
 
     - name: 'Run PHP Stan'
       if: ${{ inputs.run-phpstan == 'true' }}
-      uses: adore-me/gha-php-stan@v2.0.2
+      uses: adore-me/gha-php-stan@v2.1.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
