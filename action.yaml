@@ -8,6 +8,10 @@ inputs:
     description: 'Run PHP Checkstyle'
     required: true
     default: 'true'
+  phpcs-standard:
+    description: 'PHP checkstyle standard to use, if run-phpcs is true'
+    required: false
+    default: 'PSR2'
   run-phpmd:
     description: 'Run PHP MD'
     required: true
@@ -36,10 +40,11 @@ runs:
 
     - name: 'Run PHP Checkstyle'
       if: ${{ inputs.run-phpcs == 'true' }}
-      uses: adore-me/gha-php-checkstyle@v2.1.0
+      uses: adore-me/gha-php-checkstyle@v2.2.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
+        phpcs-standard: ${{ inputs.phpcs-standard }}
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
