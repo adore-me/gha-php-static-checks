@@ -16,6 +16,7 @@ Run PHP static checks, annotate build and artifact results.
 | **run-phpcpd**     | **true**  | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
 | **run-phpstan**    | **true**  | `true`          | Enable/disable PHP STAN.                                                                               |
 | **reports-dir**    | **true**  | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
+| **app-dir**        | **false** | ``              | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.                 |
 
 ## Outputs
 **N/A**
@@ -41,6 +42,7 @@ steps:
       run-phpcpd: 'false'
       run-phpstan: 'true'
       reports-dir: 'build/reports'
+      app-dir: ''
 ```
 
 You can skip the `with` section if you are ok with the default values.
