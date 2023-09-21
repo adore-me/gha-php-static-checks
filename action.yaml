@@ -28,6 +28,10 @@ inputs:
     description: 'Reports base directory'
     required: true
     default: 'build/reports'
+  app-dir:
+    description: 'Application directory - use without trailing slash. When empty will try to guess if is `src` or `app`.'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -40,18 +44,20 @@ runs:
 
     - name: 'Run PHP Checkstyle'
       if: ${{ inputs.run-phpcs == 'true' }}
-      uses: adore-me/gha-php-checkstyle@v2.2.0
+      uses: adore-me/gha-php-checkstyle@v2.2.1
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
         phpcs-standard: ${{ inputs.phpcs-standard }}
+        app-dir: ${{ inputs.app-dir }}
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
-      uses: adore-me/gha-php-md@v2.1.0
+      uses: adore-me/gha-php-md@v2.1.1
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
+        app-dir: ${{ inputs.app-dir }}
 
     - name: 'Run PHP CPD'
       if: ${{ inputs.run-phpcpd == 'true' }}
@@ -62,10 +68,11 @@ runs:
 
     - name: 'Run PHP Stan'
       if: ${{ inputs.run-phpstan == 'true' }}
-      uses: adore-me/gha-php-stan@v2.1.0
+      uses: adore-me/gha-php-stan@v2.1.1
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
+        app-dir: ${{ inputs.app-dir }}
 
     - name: 'Save Static Checks artifacts'
       if: always()
