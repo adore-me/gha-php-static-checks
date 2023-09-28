@@ -15,6 +15,7 @@ Run PHP static checks, annotate build and artifact results.
 | **run-phpmd**      | **true**  | `true`          | Enable/disable PHP Mess Detector.                                                                      |
 | **run-phpcpd**     | **true**  | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
 | **run-phpstan**    | **true**  | `true`          | Enable/disable PHP STAN.                                                                               |
+| **run-phprector**  | **false** | `false`         | Enable/disable PHP Rector checks.                                                                      |
 | **reports-dir**    | **true**  | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
 | **app-dir**        | **false** | ``              | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.                 |
 
