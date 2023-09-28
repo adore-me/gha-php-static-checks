@@ -84,6 +84,7 @@ runs:
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 'Save Static Checks artifacts'
       if: always()
