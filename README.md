@@ -7,18 +7,19 @@ Run PHP static checks, annotate build and artifact results.
 **Input** takes precedence!
 
 ## Inputs
-| Key                | Required  | Default         | Description                                                                                            |
-|--------------------|-----------|-----------------|--------------------------------------------------------------------------------------------------------|
-| **php-image**      | **false** | `N/A`           | PHP image to use (fully qualified image address).<br/>**Ex**: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
-| **run-phpcs**      | **true**  | `true`          | Enable/disable PHP Checkstyle.                                                                         |
-| **phpcs-standard** | **false** | `PSR2`          | Defines which standard will be used by PHP Checkstyle. Omit it, to use default standard (PSR2).        |
-| **run-phpmd**      | **true**  | `true`          | Enable/disable PHP Mess Detector.                                                                      |
-| **run-phpcpd**     | **true**  | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
-| **run-phpstan**    | **true**  | `true`          | Enable/disable PHP STAN.                                                                               |
-| **run-phprector**  | **false** | `false`         | Enable/disable PHP Rector checks.                                                                      |
-| **github-token**   | **false** | ``              | Required by php-rector to run report validation .                                                      |
-| **reports-dir**    | **true**  | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
-| **app-dir**        | **false** | ``              | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.                 |
+| Key                   | Required  | Default         | Description                                                                                            |
+|-----------------------|-----------|-----------------|--------------------------------------------------------------------------------------------------------|
+| **php-image**         | **false** | `N/A`           | PHP image to use (fully qualified image address).<br/>**Ex**: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
+| **run-phpcs**         | **true**  | `true`          | Enable/disable PHP Checkstyle.                                                                         |
+| **phpcs-standard**    | **false** | `PSR2`          | Defines which standard will be used by PHP Checkstyle. Omit it, to use default standard (PSR2).        |
+| **run-phpmd**         | **true**  | `true`          | Enable/disable PHP Mess Detector.                                                                      |
+| **run-phpcpd**        | **true**  | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
+| **run-phpstan**       | **true**  | `true`          | Enable/disable PHP STAN.                                                                               |
+| **run-rector**        | **false** | `false`         | Enable/disable Rector checks.                                                                          |
+| **run-laravel-pint**  | **false** | `false`         | Enable/disable Laravel Pint checks.                                                                    |
+| **github-token**      | **false** | ``              | Required by rector/laravel pint to run report validation .                                             |
+| **reports-dir**       | **true**  | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
+| **app-dir**           | **false** | ``              | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.                 |
 
 ## Outputs
 **N/A**
@@ -44,7 +45,8 @@ steps:
       run-phpmd: 'true'
       run-phpcpd: 'false'
       run-phpstan: 'true'
-      run-phprector: 'true'
+      run-rector: 'true'
+      run-laravel-pint: 'true'
       reports-dir: 'build/reports'
       app-dir: ''
 ```
