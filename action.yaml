@@ -36,6 +36,10 @@ inputs:
     description: 'Run PHP Rector'
     required: false
     default: 'false'
+  github-token:
+    description: 'Github token'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -84,7 +88,7 @@ runs:
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ inputs.github-token }}
 
     - name: 'Save Static Checks artifacts'
       if: always()
