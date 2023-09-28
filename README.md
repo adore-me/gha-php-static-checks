@@ -16,6 +16,7 @@ Run PHP static checks, annotate build and artifact results.
 | **run-phpcpd**     | **true**  | `true`          | Enable/disable PHP Copy/Paste Detector.                                                                |
 | **run-phpstan**    | **true**  | `true`          | Enable/disable PHP STAN.                                                                               |
 | **run-phprector**  | **false** | `false`         | Enable/disable PHP Rector checks.                                                                      |
+| **github-token**   | **false** | ``              | Required by php-rector to run report validation .                                                      |
 | **reports-dir**    | **true**  | `build/reports` | Path to reports directory (no trailing `/`).                                                           |
 | **app-dir**        | **false** | ``              | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.                 |
 
@@ -36,12 +37,14 @@ steps:
   - name: 'Run Static Checks'
     uses: adore-me/gha-php-static-checks@master
     with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
       php-image: SOME_IMAGE # or `PROJECT_IMAGE` env var set
       run-phpcs: 'true'
       phpcs-standard: 'PSR12'
       run-phpmd: 'true'
       run-phpcpd: 'false'
       run-phpstan: 'true'
+      run-phprector: 'true'
       reports-dir: 'build/reports'
       app-dir: ''
 ```
