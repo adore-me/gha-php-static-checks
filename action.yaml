@@ -32,8 +32,12 @@ inputs:
     description: 'Application directory - use without trailing slash. When empty will try to guess if is `src` or `app`.'
     required: false
     default: ''
-  run-phprector:
+  run-rector:
     description: 'Run PHP Rector'
+    required: false
+    default: 'false'
+  run-laravel-pint:
+    description: 'Run Laravel Pint'
     required: false
     default: 'false'
   github-token:
@@ -82,9 +86,17 @@ runs:
         report-dir: ${{ inputs.reports-dir }}
         app-dir: ${{ inputs.app-dir }}
 
-    - name: 'Run PHP Rector'
-      if: ${{ inputs.run-phprector == 'true' }}
-      uses: adore-me/gha-php-rector@v1.0.1
+    - name: 'Run Rector'
+      if: ${{ inputs.run-rector == 'true' }}
+      uses: adore-me/gha-php-rector@v1.0.4
+      with:
+        php-image: ${{ steps.set-php-image.outputs.php-image }}
+        report-dir: ${{ inputs.reports-dir }}
+        github-token: ${{ inputs.github-token }}
+
+    - name: 'Run Laravel Pint'
+      if: ${{ inputs.run-laravel-pint == 'true' }}
+      uses: adore-me/gha-php-laravel-pint@v1.0.0
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
