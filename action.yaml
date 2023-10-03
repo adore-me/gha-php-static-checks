@@ -65,7 +65,7 @@ runs:
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
-      uses: adore-me/gha-php-md@v2.1.1
+      uses: adore-me/gha-php-md@fail-on-issues
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
