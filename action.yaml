@@ -16,6 +16,10 @@ inputs:
     description: 'Run PHP MD'
     required: true
     default: 'true'
+  phpmd-app-dir:
+    description: 'PHP MD application directory - add separate folders by using comma. When empty will try to guess if is `src` or `app`.'
+    required: false
+    default: ''
   run-phpcpd:
     description: 'Run PHP CPD'
     required: true
@@ -65,11 +69,11 @@ runs:
 
     - name: 'Run PHP MD'
       if: ${{ inputs.run-phpmd == 'true' }}
-      uses: adore-me/gha-php-md@v2.1.2
+      uses: adore-me/gha-php-md@v2.1.3
       with:
         php-image: ${{ steps.set-php-image.outputs.php-image }}
         report-dir: ${{ inputs.reports-dir }}
-        app-dir: ${{ inputs.app-dir }}
+        app-dir: ${{ inputs.phpmd-app-dir || inputs.app-dir }}
 
     - name: 'Run PHP CPD'
       if: ${{ inputs.run-phpcpd == 'true' }}
